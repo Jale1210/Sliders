@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Slider</title>
+        <style>
+            #slider {
+                width: 80%;
+                height: 80vh;
+                margin: 10vh auto;
+                box-shadow: 0 0 10px gray;
+                background: url('') center/cover;
+                position: relative;
+            }
+            #slider>button {
+                position: absolute;
+                top: 50%;
+                user-select: none;
+            }
+            #prev { left: -40px }
+            #next { right: -40px }
+        </style>
+    </head>
+    <body>
+        <div id="slider">
+            <button id="prev" onclick="change(-1)">&#128896;</button>
+            <button id="next" onclick="change()">&#128898;</button>
+        </div>
+        
+        <script>
+            const slider = document.getElementById("slider");
+            let x = 1;
+            let timer;
+            show();
+
+            function change(dx = 1) {
+                clearTimeout(timer);
+                x += dx;
+                if (x < 1) x = 9;
+                if (x > 9) x = 1;
+                show();
+            }
+
+            function show() {
+                slider.style.backgroundImage = "url('img/" + x + ".jpg')";
+                timer = setTimeout(change, 3000);
+            }
+            /*
+            function next() {
+                if (x < 9) x++; else x = 1;
+                show();
+            }
+            function prev() {
+                if (x > 1) x--; else x = 9;
+                show();
+            }
+            */
+        </script>
+    </body>
+</html>
